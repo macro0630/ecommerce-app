@@ -28,7 +28,7 @@ ls dist/
 sudo rm -rf /usr/share/nginx/html/*
 
 # 빌드 파일 복사
-sudo cp -r ~/ecommerce-app/frontend/dist/* /usr/share/nginx/html/
+sudo cp -r dist/* /usr/share/nginx/html/
 
 # 파일 확인
 ls /usr/share/nginx/html/
