@@ -1,3 +1,91 @@
+```
+cd ~/ecommerce-app/frontend
+
+# 의존성 설치
+npm install
+
+# 빌드 실행
+npm run build
+
+# 빌드 결과 확인
+ls dist/
+
+# 기존 기본 페이지 삭제
+sudo rm -rf /usr/share/nginx/html/*
+
+# 빌드 파일 복사
+sudo cp -r ~/ecommerce-app/frontend/dist/* /usr/share/nginx/html/
+
+# 파일 확인
+ls /usr/share/nginx/html/
+
+# Nginx 설정 파일 백업
+sudo cp /etc/nginx/nginx.conf /etc/nginx/nginx.conf.backup
+
+# 새로운 설정 파일 작성
+sudo tee /etc/nginx/conf.d/shopeasy.conf > /dev/null <<'EOF'
+server {
+    listen 80;
+    server_name _;
+
+    # 프론트엔드 정적 파일 서빙
+    root /usr/share/nginx/html;
+    index index.html;
+
+    # React Router를 위한 설정 (새로고침 시 404 방지)
+    location / {
+        try_files $uri $uri/ /index.html;
+    }
+
+    # API 요청을 Node.js 서버로 프록시
+    location /api/ {
+        proxy_pass http://127.0.0.1:5000;
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection 'upgrade';
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_cache_bypass $http_upgrade;
+    }
+
+    # 업로드된 파일 프록시 (리뷰 사진 등)
+    location /uploads/ {
+        proxy_pass http://127.0.0.1:5000;
+    }
+}
+EOF
+
+# 기본 nginx.conf에서 server 블록 주석 처리
+# 또는 default.conf 삭제
+sudo rm -f /etc/nginx/conf.d/default.conf 2>/dev/null
+
+# 설정 문법 테스트
+sudo nginx -t
+
+# Nginx 재시작
+sudo systemctl restart nginx
+
+# 상태 확인
+sudo systemctl status nginx
+
+# API 서버 프로세스 확인
+ps aux | grep node
+
+# 실행 중이 아니라면 다시 시작
+cd ~/ecommerce-app/api-server
+nohup npm start > server.log 2>&1 &
+
+# 로그로 정상 시작 확인
+tail -5 server.log
+
+# 이제 본인 컴에서 웹브라우저에서 ip 주소 넣고 확인해본다.
+
+```
+
+
+
+
 ## git bash 에서 aws cli 경로 설정 하는 방법 
 
 ```bash
