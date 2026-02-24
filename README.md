@@ -1,4 +1,18 @@
 ```
+
+# Nginx 설치
+sudo dnf install -y nginx
+
+# Nginx 시작
+sudo systemctl start nginx
+
+# 부팅 시 자동 시작 설정
+sudo systemctl enable nginx
+
+# 상태 확인
+sudo systemctl status nginx
+
+
 cd ~/ecommerce-app/frontend
 
 # 의존성 설치
