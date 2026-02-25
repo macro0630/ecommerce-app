@@ -1,3 +1,20 @@
+### CORS 처리 
+
+```
+# .env에 CORS 허용 도메인 추가
+cat >> .env <<'EOF'
+
+# CORS 설정
+CORS_ORIGIN=http://[여러분s3프론트엔드 주소]
+EOF
+
+# API 서버 재시작
+pm2 restart  api-server
+
+```
+
+
+---
 
 ### S3 버킷 policy
 
