@@ -9,6 +9,7 @@ CORS_ORIGIN=http://[여러분s3프론트엔드 주소]
 EOF
 
 # API 서버 재시작
+cd ..
 pm2 restart  api-server
 
 ```
