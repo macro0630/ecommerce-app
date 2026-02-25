@@ -11,7 +11,7 @@
                 "Service": "cloudfront.amazonaws.com"
             },
             "Action": "s3:GetObject",
-            "Resource": "arn:aws:s3:::shopeasy-frontend-[계정ID]/*",
+            "Resource": "arn:aws:s3:::shop-frontend-[계정ID]/*",
             "Condition": {
                 "StringEquals": {
                     "AWS:SourceArn": "arn:aws:cloudfront::[계정ID]:distribution/[배포ID]"
