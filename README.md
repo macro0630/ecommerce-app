@@ -1,3 +1,29 @@
+### CloudFront 만 접근 허용하도록 정책 업데이트
+
+```
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "AllowCloudFrontServicePrincipal",
+            "Effect": "Allow",
+            "Principal": {
+                "Service": "cloudfront.amazonaws.com"
+            },
+            "Action": "s3:GetObject",
+            "Resource": "arn:aws:s3:::shopeasy-frontend-[계정ID]/*",
+            "Condition": {
+                "StringEquals": {
+                    "AWS:SourceArn": "arn:aws:cloudfront::[계정ID]:distribution/[배포ID]"
+                }
+            }
+        }
+    ]
+}
+```
+
+
+
 ### CORS 처리 
 
 ```
