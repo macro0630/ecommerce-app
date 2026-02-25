@@ -10,7 +10,7 @@
       "Effect": "Allow",
       "Principal": "*",
       "Action": "s3:GetObject",
-      "Resource": "arn:aws:s3:::shopeasy-frontend-hong/*"
+      "Resource": "arn:aws:s3:::shop-frontend-아이디/*"
     }
   ]
 }
