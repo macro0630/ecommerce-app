@@ -1,3 +1,18 @@
+### S3 의 버킷 권한 - CORS 설정
+```
+[
+  {
+    "AllowedHeaders": ["*"],
+    "AllowedMethods": ["GET", "PUT", "POST"],
+    "AllowedOrigins": ["*"],
+    "ExposeHeaders": ["ETag"],
+    "MaxAgeSeconds": 3000
+  }
+]
+```
+
+
+
 ### ec2에 dynamodb 억세스 할수 있는 권한 설정
 
 ```
