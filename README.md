@@ -1,3 +1,68 @@
+### 클라우드 와치 에이전트 설정 파일 셋티
+
+```
+# 설정 파일 생성
+sudo tee /opt/aws/amazon-cloudwatch-agent/etc/amazon-cloudwatch-agent.json > /dev/null << 'EOF'
+{
+    "agent": {
+        "metrics_collection_interval": 60,
+        "run_as_user": "root"
+    },
+    "metrics": {
+        "namespace": "ShopEasy/EC2",
+        "append_dimensions": {
+            "InstanceId": "${aws:InstanceId}",
+            "InstanceType": "${aws:InstanceType}"
+        },
+        "metrics_collected": {
+            "mem": {
+                "measurement": [
+                    "mem_used_percent",
+                    "mem_total",
+                    "mem_used"
+                ],
+                "metrics_collection_interval": 60
+            },
+            "disk": {
+                "measurement": [
+                    "used_percent",
+                    "total",
+                    "used"
+                ],
+                "metrics_collection_interval": 60,
+                "resources": ["/"]
+            },
+            "cpu": {
+                "measurement": [
+                    "cpu_usage_idle",
+                    "cpu_usage_user",
+                    "cpu_usage_system"
+                ],
+                "metrics_collection_interval": 60,
+                "totalcpu": true
+            }
+        }
+    },
+    "logs": {
+        "logs_collected": {
+            "files": {
+                "collect_list": [
+                    {
+                        "file_path": "/home/ec2-user/shopeasy-api/logs/*.log",
+                        "log_group_name": "/shopeasy/api-server",
+                        "log_stream_name": "{instance_id}",
+                        "timezone": "Local"
+                    }
+                ]
+            }
+        }
+    }
+}
+EOF
+```
+
+
+
 ### s3라이브러리 설치
 
 ```
