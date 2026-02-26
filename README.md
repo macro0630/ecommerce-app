@@ -1,3 +1,12 @@
+### 레디스 코드
+```
+connectTimeout: 5000,
+maxRetriesPerRequest: 1,
+enableOfflineQueue: false,
+```
+
+
+
 ### 클라우드 와치 에이전트 설정 파일 셋팅 1
 
 ```
