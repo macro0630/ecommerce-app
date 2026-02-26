@@ -1,4 +1,4 @@
-### 클라우드 와치 에이전트 설정 파일 셋티
+### 클라우드 와치 에이전트 설정 파일 셋팅 1
 
 ```
 # 설정 파일 생성
@@ -60,6 +60,13 @@ sudo tee /opt/aws/amazon-cloudwatch-agent/etc/amazon-cloudwatch-agent.json > /de
 }
 EOF
 ```
+
+### 에이전트 실행 2 
+
+```
+sudo /opt/aws/amazon-cloudwatch-agent/bin/amazon-cloudwatch-agent-ctl -a fetch-config -m ec2 -c file:/opt/aws/amazon-cloudwatch-agent/etc/amazon-cloudwatch-agent.json -s
+```
+
 
 
 
