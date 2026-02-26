@@ -1,3 +1,39 @@
+### ec2에 dynamodb 억세스 할수 있는 권한 설정
+
+```
+cat > trust-policy.json <<'EOF'
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Principal": {"Service": "ec2.amazonaws.com"},
+      "Action": "sts:AssumeRole"
+    }
+  ]
+}
+EOF
+
+# IAM 역할 생성
+aws iam create-role \
+  --role-name EC2-ShopEasy-Role \
+  --assume-role-policy-document file://trust-policy.json
+
+# DynamoDB 접근 정책 연결
+aws iam attach-role-policy \
+  --role-name EC2-ShopEasy-Role \
+  --policy-arn arn:aws:iam::aws:policy/AmazonDynamoDBFullAccess
+
+# 인스턴스 프로필 생성 및 역할 연결
+aws iam create-instance-profile --instance-profile-name EC2-ShopEasy-Profile
+aws iam add-role-to-instance-profile \
+  --instance-profile-name EC2-ShopEasy-Profile \
+  --role-name EC2-ShopEasy-Role
+```
+
+
+
+
 
 ### CORS 처리 
 
