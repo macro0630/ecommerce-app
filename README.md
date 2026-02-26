@@ -1,3 +1,9 @@
+### s3라이브러리 설치
+
+```
+npm install @aws-sdk/client-s3 @aws-sdk/s3-request-presigner
+```
+
 ### S3 의 버킷 권한 - CORS 설정
 ```
 [
@@ -11,6 +17,10 @@
 ]
 ```
 
+### dynamodb 라이브러리 설치
+```
+npm install @aws-sdk/client-dynamodb @aws-sdk/lib-dynamodb
+```
 
 
 ### ec2에 dynamodb 억세스 할수 있는 권한 설정
