@@ -48,7 +48,7 @@ sudo tee /opt/aws/amazon-cloudwatch-agent/etc/amazon-cloudwatch-agent.json > /de
             "files": {
                 "collect_list": [
                     {
-                        "file_path": "/home/ec2-user/shopeasy-api/logs/*.log",
+                        "file_path": "/home/ec2-user/.pm2/logs/*.log",
                         "log_group_name": "/shopeasy/api-server",
                         "log_stream_name": "{instance_id}",
                         "timezone": "Local"
