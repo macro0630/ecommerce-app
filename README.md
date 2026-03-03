@@ -1,3 +1,8 @@
+### AWS 프리 티어 사용중 과금 되었을때 : 
+
+https://support.console.aws.amazon.com/support/home?region=ap-northeast-2#/
+
+
 
 # 실습
 
