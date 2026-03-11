@@ -10,6 +10,12 @@
 
 ---
 
+### eks 생성 동영상
+
+https://youtu.be/Gpen9aW4X1M
+
+---
+
 ### AWS 프리 티어 사용중 과금 되었을때 : 
 
 https://support.console.aws.amazon.com/support/home?region=ap-northeast-2#/
